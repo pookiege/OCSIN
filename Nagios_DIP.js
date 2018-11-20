@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Nagios : que le DIP V2
-// @namespace    http://tampermonkey.net/
+// @namespace    https://prod.etat-ge.ch/ctipilotage-srv/cgi-bin/status.cgi?host=monitoring_dispo&limit=0
 // @version      1.0
 // @description  try to take over the world!
 // @author       NTH
