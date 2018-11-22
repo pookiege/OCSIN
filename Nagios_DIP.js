@@ -18,7 +18,7 @@
                ["7783 - Sport loisirs","10480","10487","10539","10540","6066","6376","6487","9379"],
                ["7784 - Orientation Formation Professionnelle et Continue","10328","10343","10481","5143","5310","6069","6129","6277","6279","6283","6355","6406","6885","9000","9460","9479","9503","9619","9733","9770","9817","9818"],
                ["7786 - Sites Internet du pédagogique","10370","10372","10391","10392","10393","10394","10395","10396","10397","10398","10399","10400","10401","10402","10403","10404","10405","10406","10407","10408","10409","10410","10411","10412","10413","10414","10415","10416","10417","10418","10419","10420","10421","10422","10497","10498","10499","10500","10500","10502","10504","5472","6458","6495","6756","6828","9102","9365","9464","9481","10464","10503","10538"],
-               ["7787 - Education formation","10342","5182","5438","5441","5490","6116","6260","6281","6296","6297","6300","6353","6354","6415","6415_0002","6415_0003","6587","6828","6833","6853","9150","9329","9347","9649","10535","10536","10537"],
+               ["7787 - Education formation","10342","5182","5438","5441","5490","6116","6260","6281","6296","6297","6353","6354","6415","6415_0002","6415_0003","6587","6828","6833","6853","9150","9329","9347","9649","10535","10536","10537"],
                ["7788 - Logistique DIP","6141","6272","6320","6374","6789","9175","9335","9465"],
                ["7789 - Documentation scolaire","5472","6314","6480","9434","9578","9599","9600","9602","9603","9604","9674","9762"],
                ["7790 - Prestations d’Etat-major et de moyens du DIP","5176","6062","6143","6300","6356","9009","9328","9512","9617","9763","9765","9766","9767"],
@@ -36,6 +36,7 @@
     GM_addStyle('.statusCRITICAL { font-size: 12pt; background-color: #ff6666; font-weight: bold;}');
     GM_addStyle('.titre { font-size: 16pt; background-color: #0c66f7; color : #ffffff; border: 1px solid #777777; text-align: center; padding: 0 5 0 5; }');
     GM_addStyle('.tableRes { margin:10px; width : 100%}');
+    GM_addStyle('.preview { padding-left: 20px; height: 15px}');
 
     var compteur=0;
     var maTable = document.getElementsByTagName('table')[0];
@@ -56,19 +57,21 @@
                     if (!found && libelle.indexOf("_prd_")>=0 && libelle.indexOf(dip[x][y])>=0)
                     {
                         found = true;
-                        libelle = libelle.substring(9);
-                        libelle = libelle.substring(0,libelle.indexOf("_",8)).replace(/-/g, " ");
+                        var temp = libelle.split("_");
                         var lienImage = "";
                         var lienPopup = "";
                         if(maTable.rows[compteur].cells[1].getElementsByTagName('a').length>2){
                             lienImage=maTable.rows[compteur].cells[1].getElementsByTagName('a')[2].href;
                             lienPopup=maTable.rows[compteur].cells[1].getElementsByTagName('a')[2].rel;
                         }
-                        var appli = {name:libelle,
-                                     lien:  maTable.rows[compteur].cells[1].getElementsByTagName('a')[0].href,
+                        var appli = {code : temp[2],
+                                     sequence : temp[3],
+                                     name : temp[4],
+                                     lien :  maTable.rows[compteur].cells[1].getElementsByTagName('a')[0].href,
                                      image : lienImage,
                                      popup : lienPopup,
-                                     status:maTable.rows[compteur].cells[2].className};
+                                     status: maTable.rows[compteur].cells[2].className,
+                                     information :  maTable.rows[compteur].cells[6].innerHTML.replace(/&nbsp;/gi,'')};
                         resultat.push(appli);
                     }
                 }
@@ -100,7 +103,7 @@
             {
                 var sonde ;
                 found=false;
-                if ( resultat[a].name.startsWith(dip[x][y]))
+                if ( resultat[a].code.indexOf(dip[x][y])>=0)
                 {
                     sonde = resultat[a];
                     found=true;
@@ -109,8 +112,9 @@
                 {
                     cell = document.createElement('td');
                     var lien = document.createElement('a');
-                    lien.innerHTML = sonde.name.substring(0,sonde.name.indexOf("_")) + " - " +sonde.name.substring(1+sonde.name.indexOf("_",6));
+                    lien.innerHTML = sonde.code + " - <i>" +sonde.name + "</i>";
                     lien.href=sonde.lien;
+                    lien.title = sonde.information;
                     cell.className = sonde.status;
                     cell.appendChild(lien);
                     row.appendChild(cell);
@@ -121,9 +125,7 @@
                         pict.src = "https://prod.etat-ge.ch/ctipilotage-srv/images/action.gif";
                         lien.className = "tips";
                         lien.rel=sonde.popup;
-                        pict.style.paddingLeft = "20px";
-                        pict.height = "15";
-                        pict.width = "15";
+                        pict.className = "preview";
                         lien.href=sonde.image;
                         lien.appendChild(pict);
                         cell.appendChild(lien);
