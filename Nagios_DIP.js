@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Nagios : que le DIP V2
 // @namespace    https://prod.etat-ge.ch/ctipilotage-srv/cgi-bin/status.cgi?host=monitoring_dispo&limit=0
-// @version      1.02
+// @version      1.03
 // @description  try to take over the world!
 // @author       NTH
 // @require      http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js
@@ -34,6 +34,7 @@
     GM_addStyle('.statusOK       { font-size: 10pt; }');
     GM_addStyle('.statusWARNING  { font-size: 12pt; }');
     GM_addStyle('.statusCRITICAL { font-size: 12pt; background-color: #ff6666; font-weight: bold;}');
+    GM_addStyle('.statusCRITICAL p { font-size: 8pt; background-color: #ff6666; }');
     GM_addStyle('.titre { font-size: 16pt; background-color: #FFA07A; color : #ffffff; border: 1px solid #777777; text-align: center; padding: 0 5 0 5; }');
     GM_addStyle('.tableRes { margin:10px; width : 100%}');
     GM_addStyle('.preview { padding-left: 20px; height: 15px}');
@@ -113,6 +114,10 @@
                     cell = document.createElement('td');
                     var lien = document.createElement('a');
                     lien.innerHTML = sonde.code + " - <i>" +sonde.name + "</i>";
+                    if (sonde.status != 'statusOK')
+                    {
+                        lien.innerHTML += '<p>' + sonde.information + '</p>';
+                    }
                     lien.href=sonde.lien;
                     lien.title = sonde.information;
                     cell.className = sonde.status;
