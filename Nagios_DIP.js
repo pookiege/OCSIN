@@ -35,7 +35,7 @@
     GM_addStyle('.statusWARNING  { font-size: 12pt; }');
     GM_addStyle('.statusCRITICAL { font-size: 12pt; background-color: #ff6666; font-weight: bold;}');
     GM_addStyle('.statusCRITICAL p { font-size: 8pt; background-color: #ff6666; }');
-    GM_addStyle('.titre { font-size: 16pt; background-color: #FFA07A; color : #ffffff; border: 1px solid #777777; text-align: center; padding: 0 5 0 5; }');
+    GM_addStyle('.titre { font-size: 16pt; background-color: #0000CD; color : #ffffff; border: 1px solid #777777; text-align: center; padding: 0 5 0 5; }');
     GM_addStyle('.tableRes { margin:10px; width : 100%}');
     GM_addStyle('.preview { float:right; height: 15px}');
 
