@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Nagios : que le DIP V2
 // @namespace    https://prod.etat-ge.ch/ctipilotage-srv/cgi-bin/status.cgi?host=monitoring_dispo&limit=0
-// @version      1.06
+// @version      1.07
 // @description  Nagios version allégée
 // @author       NTH
 // @require      http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js
@@ -31,11 +31,11 @@
     document.getElementsByClassName('pageTitle')[0].remove();
     document.getElementById('pagelimit').remove();
     document.getElementsByClassName('itemTotalsTitle')[0].remove();
-    GM_addStyle('.statusOK       { font-size: 10pt; }');
-    GM_addStyle('.statusWARNING  { font-size: 12pt; }');
-    GM_addStyle('.statusCRITICAL { font-size: 12pt; background-color: #ff6666; font-weight: bold;}');
+    GM_addStyle('.statusOK       { font-size: 12pt; }');
+    GM_addStyle('.statusWARNING  { font-size: 14pt; }');
+    GM_addStyle('.statusCRITICAL { font-size: 14pt; background-color: #ff6666; font-weight: bold;}');
     GM_addStyle('.statusCRITICAL p { font-size: 8pt; background-color: #ff6666; }');
-    GM_addStyle('.titre { font-size: 16pt; background-color: #0000CD; color : #ffffff; border: 1px solid #777777; text-align: center; padding: 0 5 0 5; }');
+    GM_addStyle('.titre { font-size: 20pt; background-color: #0000CD; color : #ffffff; border: 1px solid #777777; text-align: center; padding: 0 5 0 5; }');
     GM_addStyle('.tableRes { margin:10px; width : 100%}');
     GM_addStyle('.preview { float:right; height: 15px}');
 
