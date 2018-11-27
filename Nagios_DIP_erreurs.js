@@ -25,7 +25,7 @@
                ["7815 - Pédagogique","9497","9727"]
               ];
     var resultat =[];
-    var nbColonnes = 6;
+    var nbColonnes = 2;
     //on vire le haut, superflu
     document.getElementsByClassName('headertable')[0].remove();
     document.getElementsByClassName('pageTitle')[0].remove();
@@ -161,11 +161,14 @@
             document.body.appendChild(table);
         }
     }
+    var images = ['https://media.giphy.com/media/11sBLVxNs7v6WA/giphy.gif',
+                 'https://media.giphy.com/media/l6c2iEKAXwHYs/giphy.gif',
+                 'https://media.giphy.com/media/s2qXK8wAvkHTO/giphy.gif',
+                 'https://media.giphy.com/media/XdHbUa7eL3DTW/giphy.gif'];
     if (toutBaigne)
     {
-        GM_addStyle('.body {background-color: #000000}');
         var minions = document.createElement('img');
-        minions.src='https://media.giphy.com/media/11sBLVxNs7v6WA/giphy.gif';
+        minions.src=images[Math.floor(Math.random()*images.length)];
         var info = document.createElement('DIV');
         info.className='info';
         info.innerHTML='Tout est OK pour le DIP';
