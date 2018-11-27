@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Nagios : que le DIP V2
 // @namespace    https://prod.etat-ge.ch/ctipilotage-srv/cgi-bin/status.cgi?host=monitoring_dispo&limit=0
-// @version      1.03
+// @version      1.04
 // @description  try to take over the world!
 // @author       NTH
 // @require      http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js
@@ -37,7 +37,7 @@
     GM_addStyle('.statusCRITICAL p { font-size: 8pt; background-color: #ff6666; }');
     GM_addStyle('.titre { font-size: 16pt; background-color: #FFA07A; color : #ffffff; border: 1px solid #777777; text-align: center; padding: 0 5 0 5; }');
     GM_addStyle('.tableRes { margin:10px; width : 100%}');
-    GM_addStyle('.preview { padding-left: 20px; height: 15px}');
+    GM_addStyle('.preview { float:right; height: 15px}');
 
     var compteur=0;
     var maTable = document.getElementsByTagName('table')[0];
