@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Nagios : DIP / Erreurs
 // @namespace    https://prod.etat-ge.ch/ctipilotage-srv/cgi-bin/status.cgi?host=monitoring_dispo&limit=0
-// @version      1.01
+// @version      1.02
 // @description  Nagios version super allégée
 // @author       NTH
 // @require      http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js
@@ -38,8 +38,7 @@
     GM_addStyle('.titre { font-size: 20pt; background-color: #0000CD; color : #ffffff; border: 1px solid #777777; text-align: center; padding: 0 5 0 5; }');
     GM_addStyle('.tableRes { margin:10px; width : 100%}');
     GM_addStyle('.preview { float:right; height: 15px}');
-    GM_addStyle('.info {text-align: center ; font-size: 80pt;font-weight: bold; display: block; margin-left: auto; margin-right: auto ; padding: 80 0 80 0; color: #4444FF}');
-
+       GM_addStyle('.info {text-align: center ; font-size: 80pt;font-weight: bold; display: block; margin-left: auto; margin-right: auto ; padding: 30 0 30 0; color: #4444FF;height:300}');
     var compteur=0;
     var maTable = document.getElementsByTagName('table')[0];
     var found=false;
