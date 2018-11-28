@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Nagios : DIP / Erreurs
 // @namespace    https://prod.etat-ge.ch/ctipilotage-srv/cgi-bin/status.cgi?host=monitoring_dispo&limit=0
-// @version      1.02
+// @version      1.03
 // @description  Nagios version super allégée
 // @author       NTH
 // @require      http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js
@@ -24,6 +24,12 @@
                ["7790 - Prestations d’Etat-major et de moyens du DIP","5176","6062","6143","6300","6356","9009","9328","9512","9617","9763","9765","9766","9767"],
                ["7815 - Pédagogique","9497","9727"]
               ];
+    var images = ['https://media.giphy.com/media/11sBLVxNs7v6WA/giphy.gif',
+                 'https://media.giphy.com/media/l6c2iEKAXwHYs/giphy.gif',
+                 'https://media.giphy.com/media/s2qXK8wAvkHTO/giphy.gif',
+                 'https://media.giphy.com/media/XdHbUa7eL3DTW/giphy.gif',
+                 'https://media.giphy.com/media/GCvktC0KFy9l6/giphy.gif',
+                 'https://media.giphy.com/media/l0MYDGA3Du1hBR4xG/giphy.gif'];
     var resultat =[];
     var nbColonnes = 2;
     //on vire le haut, superflu
@@ -160,10 +166,7 @@
             document.body.appendChild(table);
         }
     }
-    var images = ['https://media.giphy.com/media/11sBLVxNs7v6WA/giphy.gif',
-                 'https://media.giphy.com/media/l6c2iEKAXwHYs/giphy.gif',
-                 'https://media.giphy.com/media/s2qXK8wAvkHTO/giphy.gif',
-                 'https://media.giphy.com/media/XdHbUa7eL3DTW/giphy.gif'];
+
     if (toutBaigne)
     {
         var minions = document.createElement('img');
