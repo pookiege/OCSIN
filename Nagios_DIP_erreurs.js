@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name         Nagios : DIP / Erreurs
 // @namespace    https://prod.etat-ge.ch/ctipilotage-srv/cgi-bin/status.cgi?host=monitoring_dispo&limit=0
-// @version      1.04
+// @version      1.1
 // @description  Nagios version super allégée
 // @author       NTH
 // @require      http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js
+// @require      https://raw.githubusercontent.com/pookiege/OCSIN/master/purgeNagios.js
 // @match        https://*.etat-ge.ch/ctipilotage-srv/cgi-bin/status.cgi?host=monitoring_dispo&limit=0
 // @grant        GM_addStyle
 // @updateURL    https://raw.githubusercontent.com/pookiege/OCSIN/master/Nagios_DIP_erreurs.js
@@ -30,13 +31,6 @@
                  'https://media.giphy.com/media/XdHbUa7eL3DTW/giphy.gif',
                  'https://media.giphy.com/media/GCvktC0KFy9l6/giphy.gif',
                  'https://media.giphy.com/media/l0MYDGA3Du1hBR4xG/giphy.gif'];
-    var resultat =[];
-    var nbColonnes = 2;
-    //on vire le haut, superflu
-    document.getElementsByClassName('headertable')[0].remove();
-    document.getElementsByClassName('pageTitle')[0].remove();
-    document.getElementById('pagelimit').remove();
-    document.getElementsByClassName('itemTotalsTitle')[0].remove();
     GM_addStyle('.statusOK       { font-size: 12pt; }');
     GM_addStyle('.statusWARNING  { font-size: 14pt; }');
     GM_addStyle('.statusCRITICAL { font-size: 14pt; background-color: #ff6666; font-weight: bold;}');
@@ -46,147 +40,6 @@
     GM_addStyle('.preview { float:right; height: 15px}');
     GM_addStyle('.info {text-align: center ; font-size: 80pt;font-weight: bold; display: block; margin-left: auto; margin-right: auto ; padding: 30 0 50 0; color: #4444FF;  }');
     GM_addStyle('.infoimg { display: block; margin-left: auto; margin-right: auto ;text-align: center ;padding: 0 0 0 0; height:300; border: 2px solid #4444FF;border-radius: 6px; }');
-    var compteur=0;
-    var maTable = document.getElementsByTagName('table')[0];
-    var found=false;
-    var toutBaigne = true;
-    for (compteur=0;compteur<maTable.rows.length;compteur++) {
-        //on parcourt les lignes du tableau
-        //pour chaque ligne il y a plusieurs cellules
-
-        if (maTable.rows[compteur].cells[1].getElementsByTagName('tr').length >0)
-        {
-            //on est bien sur le nom
-            var libelle = maTable.rows[compteur].cells[1].getElementsByTagName('a')[0].innerHTML;
-
-            found=false;
-            for (var x=0;x<dip.length;x++)
-            {
-                for (var y=1;y<dip[x].length;y++)
-                {
-                    if (!found && libelle.indexOf("_prd_")>=0 && libelle.indexOf(dip[x][y])>=0)
-                    {
-                        found = true;
-                        var temp = libelle.split("_");
-                        var lienImage = "";
-                        var lienPopup = "";
-                        if(maTable.rows[compteur].cells[1].getElementsByTagName('a').length>2){
-                            lienImage=maTable.rows[compteur].cells[1].getElementsByTagName('a')[2].href;
-                            lienPopup=maTable.rows[compteur].cells[1].getElementsByTagName('a')[2].rel;
-                        }
-                        var appli = {code : temp[2],
-                                     sequence : temp[3],
-                                     name : temp[4],
-                                     lien :  maTable.rows[compteur].cells[1].getElementsByTagName('a')[0].href,
-                                     image : lienImage,
-                                     popup : lienPopup,
-                                     status: maTable.rows[compteur].cells[2].className,
-                                     information :  maTable.rows[compteur].cells[6].innerHTML.replace(/&nbsp;/gi,'')};
-                        resultat.push(appli);
-                    }
-                }
-            }
-        }
-    }
-    maTable.remove();
-    var foundPourSF=false;
-    //On attaque l'affichage customisé
-    for (x=0;x<dip.length;x++)
-    {
-        //On parcourt les SF du tableau DIP
-        foundPourSF=false;
-        var table = document.createElement('table');
-        table.className='tableRes';
-        var tableBody = document.createElement('tbody');
-        var colonne = 0;
-        var row = document.createElement('tr');
-        //On rajoute l'entête
-        var cell = document.createElement('td');
-        cell.colSpan =nbColonnes;
-        cell.innerHTML = dip[x][0];
-        cell.className = 'titre';
-        row.appendChild(cell);
-        tableBody.appendChild(row);
-        row = document.createElement('tr');
-        for (y=1;y<dip[x].length;y++)
-        {
-            //Pour chaque appli du SF on cherche
-            found=false;
-            for (var a=0;a<resultat.length ;a++)
-            {
-                var sonde ;
-                found=false;
-                if ( resultat[a].code.indexOf(dip[x][y])>=0)
-                {
-                    sonde = resultat[a];
-                    found=true;
-                }
-                if (found)
-                {
-                    cell = document.createElement('td');
-                    var lien = document.createElement('a');
-                    lien.innerHTML = sonde.code + " - <i>" +sonde.name + "</i>";
-                    if (sonde.status != 'statusOK')
-                    {
-                        lien.innerHTML += '<p>' + sonde.information + '</p>';
-                        foundPourSF = true;
-                        toutBaigne = false;
-                    }
-                    lien.href=sonde.lien;
-                    lien.title = sonde.information;
-                    cell.className = sonde.status;
-                    cell.appendChild(lien);
-                    row.appendChild(cell);
-                    if(sonde.image.length>0)
-                    {
-                        lien = document.createElement('a');
-                        var pict = document.createElement('img');
-                        pict.src = "https://prod.etat-ge.ch/ctipilotage-srv/images/action.gif";
-                        lien.className = "tips";
-                        lien.rel=sonde.popup;
-                        pict.className = "preview";
-                        lien.href=sonde.image;
-                        lien.appendChild(pict);
-                        cell.appendChild(lien);
-                        row.appendChild(cell);
-                    }
-                    colonne+=1;
-                    if (colonne==nbColonnes)
-                    {
-                        tableBody.appendChild(row);
-                        row = document.createElement('tr');
-                        colonne=0;
-                    }
-                }
-            }
-        }
-        tableBody.appendChild(row);
-        table.appendChild(tableBody);
-        if (foundPourSF)
-        {
-            document.body.appendChild(table);
-        }
-    }
-
-    if (toutBaigne)
-    {
-        var minions = document.createElement('img');
-        minions.src=images[Math.floor(Math.random()*images.length)];
-        var info = document.createElement('DIV');
-        info.className='info';
-        info.innerHTML='Tout est OK pour le DIP';
-        minions.className='infoimg';
-        document.body.appendChild(info);
-        document.body.appendChild(minions);
-    }
-    var script = document.createElement("script");
-    script.setAttribute("src", "//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js");
-    script.addEventListener('load', function() {
-        var script = document.createElement("script");
-        script.textContent = "window.jQ=jQuery.noConflict(true);jQuery(document).ready(function() { jQuery('a.tips').cluetip({ajaxCache: false, dropShadow: false,showTitle: false });});";
-        document.body.appendChild(script);
-    }, false);
-    document.body.appendChild(script);
-
-})
+    purgeNagios2(dip,images);
+    })
 ();
