@@ -439,7 +439,7 @@ function purgeNagiosTous(SCLI,images,infoService){
     {
         info = document.createElement('DIV');
         info.className='info';
-        info.innerHTML='Tout est OK pour ' + infoService;
+        info.innerHTML=' \o/ Tout est OK pour ' + infoService;
         document.body.appendChild(info);
         var minions = document.createElement('img');
         minions.src=images[Math.floor(Math.random()*images.length)];
