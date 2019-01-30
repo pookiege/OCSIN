@@ -292,8 +292,8 @@ function purgeNagios2(SCLI,images){
 }
 
 function purgeNagiosTous(SCLI,images,infoService){
-                  var resultat =[];
-    var nbColonnes = 2;
+    var resultat =[];
+    var nbColonnes = 6;
     //on vire le haut, superflu
     document.getElementsByClassName('headertable')[0].remove();
     document.getElementsByClassName('pageTitle')[0].remove();
@@ -316,7 +316,6 @@ function purgeNagiosTous(SCLI,images,infoService){
             found=false;
             for (var serv=0;serv<SCLI.length;serv++)
             {
-                //alert(serv + " - " + SCLI[serv][0]);
                 for (var x=1;x<SCLI[serv].length;x++)
                 {
                     for (var sf=1;sf<SCLI[serv][x].length;sf++)
@@ -352,27 +351,43 @@ function purgeNagiosTous(SCLI,images,infoService){
     }
     maTable.remove();
     var foundPourSF=false;
+    var foundPourServ = false;
     //On attaque l'affichage customisé
     for (serv=0;serv<SCLI.length;serv++)
     {
+        foundPourServ = false;
+        var tableServ = document.createElement('table');
+        tableServ.className='tableRes';
+        var tableBodyServ = document.createElement('tbody');
+        var colonne = 0;
+        var rowServ = document.createElement('tr');
+        //On rajoute l'entête
+        var cell = document.createElement('td');
+        cell.colSpan =nbColonnes;
+        //Création du container
+        cell.innerHTML = "<b>"+SCLI[serv][0] + "</b> ";
+        cell.className = 'titre';
+        rowServ.appendChild(cell);
+        tableBodyServ.appendChild(rowServ);
+        rowServ = document.createElement('tr');
         for (x=1;x<SCLI[serv].length;x++)
         {
-            //alert("Service:"+serv+" - "+SCLI[serv][x]);
-                //On parcourt les SF du tableau DIP
+            //On parcourt les SF du tableau DIP
             foundPourSF=false;
             var table = document.createElement('table');
-            table.className='tableRes';
+            table.className='tableSF';
+            colonne = 0;
             var tableBody = document.createElement('tbody');
-            var colonne = 0;
-            var row = document.createElement('tr');
+            var rowTitre = document.createElement('tr');
             //On rajoute l'entête
-            var cell = document.createElement('td');
+            cell = document.createElement('td');
             cell.colSpan =nbColonnes;
-            cell.innerHTML = SCLI[serv][x][0];
-            cell.className = 'titre';
-            row.appendChild(cell);
-            tableBody.appendChild(row);
-            row = document.createElement('tr');
+            //Création du container
+            cell.innerHTML = SCLI[serv][x][0] + "-" + SCLI[serv][x][1] + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>" + SCLI[serv][x][2];
+            cell.className = 'titre2';
+            rowTitre.appendChild(cell);
+            tableBody.appendChild(rowTitre);
+            var row = document.createElement('tr');
             for (var y=1;y<SCLI[serv][x].length;y++)
             {
                 //Pour chaque appli du SF on cherche
@@ -392,7 +407,7 @@ function purgeNagiosTous(SCLI,images,infoService){
                         cell = document.createElement('td');
                         var lien = document.createElement('a');
                         lien.innerHTML = sonde.code + " - <i>" +sonde.name + "</i>";
-                        if (sonde.status != 'statusOK')
+                        if (sonde.status != 'statusOK') // a optimiser puisque toujours vrai
                         {
                             lien.innerHTML += '<p>' + sonde.information + '</p>';
                             foundPourSF = true;
@@ -430,8 +445,19 @@ function purgeNagiosTous(SCLI,images,infoService){
             table.appendChild(tableBody);
             if (foundPourSF)
             {
-                document.body.appendChild(table);
+                cell = document.createElement('td');
+                cell.colSpan =nbColonnes;
+                cell.appendChild(table);
+                rowServ.appendChild(cell);
+                tableBodyServ.appendChild(rowServ);
+                rowServ = document.createElement('tr');
+                foundPourServ=true;
             }
+        }
+        if (foundPourServ)
+        {
+            tableServ.appendChild(tableBodyServ);
+            document.body.appendChild(tableServ);
         }
     }
     var info;
@@ -439,7 +465,7 @@ function purgeNagiosTous(SCLI,images,infoService){
     {
         info = document.createElement('DIV');
         info.className='info';
-        info.innerHTML=' \o/ Tout est OK pour ' + infoService;
+        info.innerHTML='Tout est OK pour '+infoService;
         document.body.appendChild(info);
         var minions = document.createElement('img');
         minions.src=images[Math.floor(Math.random()*images.length)];
