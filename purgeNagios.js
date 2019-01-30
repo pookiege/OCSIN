@@ -171,7 +171,10 @@ function purgeNagios2(SCLI,images){
                                      popup : lienPopup,
                                      status: maTable.rows[compteur].cells[2].className,
                                      information :  maTable.rows[compteur].cells[6].innerHTML.replace(/&nbsp;/gi,'')};
-                        resultat.push(appli);
+                        if(appli.status != 'statusOK')
+			{
+				resultat.push(appli);
+			}
                     }
                 }
             }
