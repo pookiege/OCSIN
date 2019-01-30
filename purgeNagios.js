@@ -291,8 +291,8 @@ function purgeNagios2(SCLI,images){
     document.body.appendChild(script);
 }
 
-function purgeNagiosTous(SCLI,images){
-    var resultat =[];
+function purgeNagiosTous(SCLI,images,infoService){
+                  var resultat =[];
     var nbColonnes = 2;
     //on vire le haut, superflu
     document.getElementsByClassName('headertable')[0].remove();
@@ -303,6 +303,7 @@ function purgeNagiosTous(SCLI,images){
     var maTable = document.getElementsByTagName('table')[0];
     var found=false;
     var toutBaigne = true;
+
     for (compteur=0;compteur<maTable.rows.length;compteur++) {
         //on parcourt les lignes du tableau
         //pour chaque ligne il y a plusieurs cellules
@@ -313,32 +314,37 @@ function purgeNagiosTous(SCLI,images){
             var libelle = maTable.rows[compteur].cells[1].getElementsByTagName('a')[0].innerHTML;
 
             found=false;
-            for (var x=0;x<SCLI.length;x++)
+            for (var serv=0;serv<SCLI.length;serv++)
             {
-                for (var sf=1;sf<SCLI[x].length;sf++)
+                //alert(serv + " - " + SCLI[serv][0]);
+                for (var x=1;x<SCLI[serv].length;x++)
                 {
-                    if (!found && libelle.indexOf("_prd_")>=0 && libelle.indexOf(SCLI[x][sf])>=0)
+                    for (var sf=1;sf<SCLI[serv][x].length;sf++)
                     {
-                        found = true;
-                        var temp = libelle.split("_");
-                        var lienImage = "";
-                        var lienPopup = "";
-                        if(maTable.rows[compteur].cells[1].getElementsByTagName('a').length>2){
-                            lienImage=maTable.rows[compteur].cells[1].getElementsByTagName('a')[2].href;
-                            lienPopup=maTable.rows[compteur].cells[1].getElementsByTagName('a')[2].rel;
+                        if (!found && libelle.indexOf("_prd_")>=0 && libelle.indexOf(SCLI[serv][x][sf])>=0)
+                        {
+                            found = true;
+                            var temp = libelle.split("_");
+                            var lienImage = "";
+                            var lienPopup = "";
+                            if(maTable.rows[compteur].cells[1].getElementsByTagName('a').length>2){
+                                lienImage=maTable.rows[compteur].cells[1].getElementsByTagName('a')[2].href;
+                                lienPopup=maTable.rows[compteur].cells[1].getElementsByTagName('a')[2].rel;
+                            }
+                            var appli = {serv : SCLI[serv][0],
+                                         code : temp[2],
+                                         sequence : temp[3],
+                                         name : temp[4],
+                                         lien :  maTable.rows[compteur].cells[1].getElementsByTagName('a')[0].href,
+                                         image : lienImage,
+                                         popup : lienPopup,
+                                         status: maTable.rows[compteur].cells[2].className,
+                                         information :  maTable.rows[compteur].cells[6].innerHTML.replace(/&nbsp;/gi,'')};
+                            if (appli.status != 'statusOK')
+                            {
+                                resultat.push(appli);
+                            }
                         }
-                        var appli = {code : temp[2],
-                                     sequence : temp[3],
-                                     name : temp[4],
-                                     lien :  maTable.rows[compteur].cells[1].getElementsByTagName('a')[0].href,
-                                     image : lienImage,
-                                     popup : lienPopup,
-                                     status: maTable.rows[compteur].cells[2].className,
-                                     information :  maTable.rows[compteur].cells[6].innerHTML.replace(/&nbsp;/gi,'')};
-						if (appli.status != 'statusOK')
-						{
-							resultat.push(appli);
-						}
                     }
                 }
             }
@@ -347,88 +353,93 @@ function purgeNagiosTous(SCLI,images){
     maTable.remove();
     var foundPourSF=false;
     //On attaque l'affichage customisé
-    for (x=0;x<SCLI.length;x++)
+    for (serv=0;serv<SCLI.length;serv++)
     {
-        //On parcourt les SF du tableau DIP
-        foundPourSF=false;
-        var table = document.createElement('table');
-        table.className='tableRes';
-        var tableBody = document.createElement('tbody');
-        var colonne = 0;
-        var row = document.createElement('tr');
-        //On rajoute l'entête
-        var cell = document.createElement('td');
-        cell.colSpan =nbColonnes;
-        cell.innerHTML = SCLI[x][0];
-        cell.className = 'titre';
-        row.appendChild(cell);
-        tableBody.appendChild(row);
-        row = document.createElement('tr');
-        for (y=1;y<SCLI[x].length;y++)
+        for (x=1;x<SCLI[serv].length;x++)
         {
-            //Pour chaque appli du SF on cherche
-            found=false;
-            for (var a=0;a<resultat.length ;a++)
+            //alert("Service:"+serv+" - "+SCLI[serv][x]);
+                //On parcourt les SF du tableau DIP
+            foundPourSF=false;
+            var table = document.createElement('table');
+            table.className='tableRes';
+            var tableBody = document.createElement('tbody');
+            var colonne = 0;
+            var row = document.createElement('tr');
+            //On rajoute l'entête
+            var cell = document.createElement('td');
+            cell.colSpan =nbColonnes;
+            cell.innerHTML = SCLI[serv][x][0];
+            cell.className = 'titre';
+            row.appendChild(cell);
+            tableBody.appendChild(row);
+            row = document.createElement('tr');
+            for (var y=1;y<SCLI[serv][x].length;y++)
             {
-                var sonde ;
+                //Pour chaque appli du SF on cherche
                 found=false;
-                if ( resultat[a].code.indexOf(SCLI[x][y])>=0)
+                for (var a=0;a<resultat.length ;a++)
                 {
-                    sonde = resultat[a];
-                    found=true;
-                }
-                if (found)
-                {
-                    cell = document.createElement('td');
-                    var lien = document.createElement('a');
-                    lien.innerHTML = sonde.code + " - <i>" +sonde.name + "</i>";
-                    if (sonde.status != 'statusOK')
+                    var sonde ;
+                    found=false;
+                    //alert("xxx - "+SCLI[serv][x][y]);
+                    if ( resultat[a].code.indexOf(SCLI[serv][x][y])>=0)
                     {
-                        lien.innerHTML += '<p>' + sonde.information + '</p>';
-                        foundPourSF = true;
-                        toutBaigne = false;
+                        sonde = resultat[a];
+                        found=true;
                     }
-                    lien.href=sonde.lien;
-                    lien.title = sonde.information;
-                    cell.className = sonde.status;
-                    cell.appendChild(lien);
-                    row.appendChild(cell);
-                    if(sonde.image.length>0)
+                    if (found)
                     {
-                        lien = document.createElement('a');
-                        var pict = document.createElement('img');
-                        pict.src = "https://prod.etat-ge.ch/ctipilotage-srv/images/action.gif";
-                        lien.className = "tips";
-                        lien.rel=sonde.popup;
-                        pict.className = "preview";
-                        lien.href=sonde.image;
-                        lien.appendChild(pict);
+                        cell = document.createElement('td');
+                        var lien = document.createElement('a');
+                        lien.innerHTML = sonde.code + " - <i>" +sonde.name + "</i>";
+                        if (sonde.status != 'statusOK')
+                        {
+                            lien.innerHTML += '<p>' + sonde.information + '</p>';
+                            foundPourSF = true;
+                            toutBaigne = false;
+                        }
+                        lien.href=sonde.lien;
+                        lien.title = sonde.information;
+                        cell.className = sonde.status;
                         cell.appendChild(lien);
                         row.appendChild(cell);
-                    }
-                    colonne+=1;
-                    if (colonne==nbColonnes)
-                    {
-                        tableBody.appendChild(row);
-                        row = document.createElement('tr');
-                        colonne=0;
+                        if(sonde.image.length>0)
+                        {
+                            lien = document.createElement('a');
+                            var pict = document.createElement('img');
+                            pict.src = "https://prod.etat-ge.ch/ctipilotage-srv/images/action.gif";
+                            lien.className = "tips";
+                            lien.rel=sonde.popup;
+                            pict.className = "preview";
+                            lien.href=sonde.image;
+                            lien.appendChild(pict);
+                            cell.appendChild(lien);
+                            row.appendChild(cell);
+                        }
+                        colonne+=1;
+                        if (colonne==nbColonnes)
+                        {
+                            tableBody.appendChild(row);
+                            row = document.createElement('tr');
+                            colonne=0;
+                        }
                     }
                 }
             }
-        }
-        tableBody.appendChild(row);
-        table.appendChild(tableBody);
-        if (foundPourSF)
-        {
-            document.body.appendChild(table);
+            tableBody.appendChild(row);
+            table.appendChild(tableBody);
+            if (foundPourSF)
+            {
+                document.body.appendChild(table);
+            }
         }
     }
-
+    var info;
     if (toutBaigne)
     {
-        var info = document.createElement('DIV');
+        info = document.createElement('DIV');
         info.className='info';
-        info.innerHTML='Tout est OK pour le DIP';
+        info.innerHTML='Tout est OK pour ' + infoService;
         document.body.appendChild(info);
         var minions = document.createElement('img');
         minions.src=images[Math.floor(Math.random()*images.length)];
@@ -437,13 +448,13 @@ function purgeNagiosTous(SCLI,images){
     }
     else
     {
-      var info = document.createElement('DIV');
-      info.className='info';
-      document.body.appendChild(info);
-      var gyro = document.createElement('img');
-      gyro.src="https://media.giphy.com/media/3o6gbcjYiGrpaLXy7K/giphy.gif"
-      gyro.className='infoimg';
-      document.body.appendChild(gyro);
+        info = document.createElement('DIV');
+        info.className='info';
+        document.body.appendChild(info);
+        var gyro = document.createElement('img');
+        gyro.src="https://media.giphy.com/media/3o6gbcjYiGrpaLXy7K/giphy.gif"
+        gyro.className='infoimg';
+        document.body.appendChild(gyro);
     }
     var script = document.createElement("script");
     script.setAttribute("src", "//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js");
