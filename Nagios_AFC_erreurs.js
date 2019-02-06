@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Nagios : AFC / Erreurs
 // @namespace    https://prod.etat-ge.ch/ctipilotage-srv/cgi-bin/status.cgi?host=monitoring_dispo&limit=0
-// @version      1.0.0
+// @version      1.0.1
 // @description  Nagios version super allégée
 // @author       NTH
 // @require      http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js
@@ -225,7 +225,8 @@
         info.className='info';
         document.body.appendChild(info);
         var gyro = document.createElement('img');
-        gyro.src="https://media.giphy.com/media/3o6gbcjYiGrpaLXy7K/giphy.gif"
+	gyro.src="https://media.giphy.com/media/3o6gbcjYiGrpaLXy7K/giphy.gif";
+        gyro.src="https://media.giphy.com/media/CzlpZQRcd5Wjm/giphy.gif";
         gyro.className='infoimg';
         document.body.appendChild(gyro);
     }
