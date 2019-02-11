@@ -26,7 +26,12 @@
                ["7815 - Pédagogique","9497","9727"]
               ];
     // Pour convertir une image en base64 : https://websemantics.uk/tools/image-to-data-uri-converter/
- var images = ['https://github.com/pookiege/OCSIN/blob/master/minions.gif'];
+ var images = ['https://raw.githubusercontent.com/pookiege/OCSIN/master/minions.gif',
+               'https://raw.githubusercontent.com/pookiege/OCSIN/master/confettis.gif',
+               'https://raw.githubusercontent.com/pookiege/OCSIN/master/belair.gif',
+               'https://raw.githubusercontent.com/pookiege/OCSIN/master/barney.gif',
+               'https://raw.githubusercontent.com/pookiege/OCSIN/master/deadpool.gif',
+               'https://raw.githubusercontent.com/pookiege/OCSIN/master/thumb_up.gif'];
     GM_addStyle('.statusOK       { font-size: 12pt; }');
     GM_addStyle('.statusWARNING  { font-size: 14pt; }');
     GM_addStyle('.statusCRITICAL { font-size: 14pt; background-color: #ff6666; font-weight: bold;}');
