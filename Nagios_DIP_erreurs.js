@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Nagios : DIP / Erreurs
 // @namespace    https://prod.etat-ge.ch/ctipilotage-srv/cgi-bin/status.cgi?host=monitoring_dispo&limit=0
-// @version      1.1.2
+// @version      1.1.3
 // @description  Nagios version super allégée
 // @author       NTH
 // @require      http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js
@@ -26,12 +26,12 @@
                ["7815 - Pédagogique","9497","9727"]
               ];
     // Pour convertir une image en base64 : https://websemantics.uk/tools/image-to-data-uri-converter/
- var images = ['https://media.giphy.com/media/11sBLVxNs7v6WA/giphy.gif',
-                 'https://media.giphy.com/media/l6c2iEKAXwHYs/giphy.gif',
-                 'https://media.giphy.com/media/s2qXK8wAvkHTO/giphy.gif',
-                 'https://media.giphy.com/media/XdHbUa7eL3DTW/giphy.gif',
-                 'https://media.giphy.com/media/GCvktC0KFy9l6/giphy.gif',
-                 'https://media.giphy.com/media/l0MYDGA3Du1hBR4xG/giphy.gif'];
+ var images = ['https://raw.githubusercontent.com/pookiege/OCSIN/master/barney.mp4',
+                 'https://raw.githubusercontent.com/pookiege/OCSIN/master/belair.mp4',
+                 'https://raw.githubusercontent.com/pookiege/OCSIN/master/confettis.mp4',
+                 'https://raw.githubusercontent.com/pookiege/OCSIN/master/deadpool.mp4',
+                 'https://raw.githubusercontent.com/pookiege/OCSIN/master/minions.mp4',
+                 'https://raw.githubusercontent.com/pookiege/OCSIN/master/thumb_up.mp4'];
     GM_addStyle('.statusOK       { font-size: 12pt; }');
     GM_addStyle('.statusWARNING  { font-size: 14pt; }');
     GM_addStyle('.statusCRITICAL { font-size: 14pt; background-color: #ff6666; font-weight: bold;}');
