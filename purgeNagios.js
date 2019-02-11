@@ -478,7 +478,7 @@ function purgeNagiosTous(SCLI,images,infoService){
         info.className='info';
         document.body.appendChild(info);
         var gyro = document.createElement('img');
-        gyro.src="https://media.giphy.com/media/3o6gbcjYiGrpaLXy7K/giphy.gif"
+        gyro.src="https://raw.githubusercontent.com/pookiege/OCSIN/master/gyro.gif"
         gyro.className='infoimg';
         document.body.appendChild(gyro);
     }
