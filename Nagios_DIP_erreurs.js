@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Nagios : DIP / Erreurs
 // @namespace    https://prod.etat-ge.ch/ctipilotage-srv/cgi-bin/status.cgi?host=monitoring_dispo&limit=0
-// @version      1.1.6
+// @version      1.1.7
 // @description  Nagios version super allégée
 // @author       NTH
 // @require      http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js
@@ -31,6 +31,8 @@
                'https://raw.githubusercontent.com/pookiege/OCSIN/master/belair.gif',
                'https://raw.githubusercontent.com/pookiege/OCSIN/master/barney.gif',
                'https://raw.githubusercontent.com/pookiege/OCSIN/master/deadpool.gif',
+               'https://raw.githubusercontent.com/pookiege/OCSIN/master/boyle.gif',
+               'https://raw.githubusercontent.com/pookiege/OCSIN/master/terry.gif',
                'https://raw.githubusercontent.com/pookiege/OCSIN/master/thumb_up.gif'];
     GM_addStyle('.statusOK       { font-size: 12pt; }');
     GM_addStyle('.statusWARNING  { font-size: 14pt; }');
