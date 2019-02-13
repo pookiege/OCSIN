@@ -43,7 +43,7 @@
     GM_addStyle('.tableRes { margin:10px; width : 100%}');
     GM_addStyle('.preview { float:right; height: 15px}');
     GM_addStyle('.info {text-align: center ; font-size: 80pt;font-weight: bold; display: block; margin-left: auto; margin-right: auto ; padding: 30 0 50 0; color: #4444FF;  }');
-    GM_addStyle('.infoimg { display: block; margin-left: auto; margin-right: auto ;text-align: center ;padding: 0 0 0 0; height:300; border: 2px solid #4444FF;border-radius: 6px; }');
+    GM_addStyle('.infoimg { display: block; margin-left: auto; margin-right: auto ;text-align: center ;padding: 0 0 0 0; height:500; border: 2px solid #4444FF;border-radius: 6px; }');
     purgeNagios2(dip,images);
     })
 ();
