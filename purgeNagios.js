@@ -218,7 +218,7 @@ function purgeNagios2(SCLI,images){
                     cell = document.createElement('td');
                     var lien = document.createElement('a');
                     lien.innerHTML = sonde.code + " - <i>" +sonde.name + "</i>";
-                    if (sonde.status != 'statusOK')
+                    if (sonde.status != 'statusOK' && sonde.status != 'statusPENDING')
                     {
                         lien.innerHTML += '<p>' + sonde.information + '</p>';
                         foundPourSF = true;
