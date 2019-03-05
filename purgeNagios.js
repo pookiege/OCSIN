@@ -181,6 +181,9 @@ function purgeNagios2(SCLI,images){
         }
     }
     maTable.remove();
+    var div = document.createElement('div');
+    div.className='divSF';
+    document.body.appendChild(div);
     var foundPourSF=false;
     //On attaque l'affichage customisé
     for (x=0;x<SCLI.length;x++)
@@ -256,7 +259,7 @@ function purgeNagios2(SCLI,images){
         table.appendChild(tableBody);
         if (foundPourSF)
         {
-            document.body.appendChild(table);
+            div.appendChild(table);
         }
     }
 
@@ -269,7 +272,7 @@ function purgeNagios2(SCLI,images){
         var minions = document.createElement('img');
         minions.src=images[Math.floor(Math.random()*images.length)];
         minions.className='infoimg';
-        document.body.appendChild(minions);
+        div.appendChild(minions);
     }
     else
     {
@@ -279,7 +282,7 @@ function purgeNagios2(SCLI,images){
       var gyro = document.createElement('img');
       gyro.src="https://raw.githubusercontent.com/pookiege/OCSIN/master/gyro.gif"
       gyro.className='infoimg';
-      document.body.appendChild(gyro);
+      div.appendChild(gyro);
     }
     var script = document.createElement("script");
     script.setAttribute("src", "//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js");
