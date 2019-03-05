@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Nagios : DIP / Erreurs
 // @namespace    https://prod.etat-ge.ch/ctipilotage-srv/cgi-bin/status.cgi?host=monitoring_dispo&limit=0
-// @version      1.1.11
+// @version      1.1.12
 // @description  Nagios version super allégée
 // @author       NTH
 // @require      http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js
@@ -26,15 +26,15 @@
                ["7815 - Pédagogique","9497","9727"]
               ];
     // Pour convertir une image en base64 : https://websemantics.uk/tools/image-to-data-uri-converter/
- var images = ['https://raw.githubusercontent.com/pookiege/OCSIN/master/minions.gif',
-               'https://raw.githubusercontent.com/pookiege/OCSIN/master/confettis.gif',
-               'https://raw.githubusercontent.com/pookiege/OCSIN/master/belair.gif',
-               'https://raw.githubusercontent.com/pookiege/OCSIN/master/barney.gif',
-               'https://raw.githubusercontent.com/pookiege/OCSIN/master/deadpool.gif',
-               'https://raw.githubusercontent.com/pookiege/OCSIN/master/boyle.gif',
-               'https://raw.githubusercontent.com/pookiege/OCSIN/master/terry.gif',
-               'https://raw.githubusercontent.com/pookiege/OCSIN/master/loop.gif',
-               'https://raw.githubusercontent.com/pookiege/OCSIN/master/thumb_up.gif'];
+ var images = ['https://raw.githubusercontent.com/pookiege/OCSIN/master/images/minions.gif',
+               'https://raw.githubusercontent.com/pookiege/OCSIN/master/images/confettis.gif',
+               'https://raw.githubusercontent.com/pookiege/OCSIN/master/images/belair.gif',
+               'https://raw.githubusercontent.com/pookiege/OCSIN/master/images/barney.gif',
+               'https://raw.githubusercontent.com/pookiege/OCSIN/master/images/deadpool.gif',
+               'https://raw.githubusercontent.com/pookiege/OCSIN/master/images/boyle.gif',
+               'https://raw.githubusercontent.com/pookiege/OCSIN/master/images/terry.gif',
+               'https://raw.githubusercontent.com/pookiege/OCSIN/master/images/loop.gif',
+               'https://raw.githubusercontent.com/pookiege/OCSIN/master/images/thumb_up.gif'];
     GM_addStyle('.statusOK       { font-size: 12pt; }');
     GM_addStyle('.statusWARNING  { font-size: 14pt; }');
     GM_addStyle('.statusCRITICAL { font-size: 14pt; background-color: #ff6666; font-weight: bold;}');
@@ -44,6 +44,7 @@
     GM_addStyle('.preview { float:right; height: 15px}');
     GM_addStyle('.info {text-align: center ; font-size: 80pt;font-weight: bold; display: block; margin-left: auto; margin-right: auto ; padding: 30 0 50 0; color: #4444FF;  }');
     GM_addStyle('.infoimg { display: block; margin-left: auto; margin-right: auto ;text-align: center ;padding: 0 0 0 0; height:500; border: 2px solid #4444FF;border-radius: 6px; }');
+    GM_addStyle('.CDS { width:20%; height:133%; zoom: 0.75; -moz-transform: scale(0.75); -moz-transform-origin: 0 0;  }');
     purgeNagios2(dip,images);
     })
 ();
