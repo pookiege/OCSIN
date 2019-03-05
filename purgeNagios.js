@@ -183,7 +183,6 @@ function purgeNagios2(SCLI,images){
     maTable.remove();
     var div = document.createElement('div');
     div.className='divSF';
-    document.body.appendChild(div);
     var foundPourSF=false;
     //On attaque l'affichage customisé
     for (x=0;x<SCLI.length;x++)
@@ -262,7 +261,7 @@ function purgeNagios2(SCLI,images){
             div.appendChild(table);
         }
     }
-
+    
     if (toutBaigne)
     {
         var info = document.createElement('DIV');
@@ -280,10 +279,13 @@ function purgeNagios2(SCLI,images){
       info.className='info';
       document.body.appendChild(info);
       var gyro = document.createElement('img');
-      gyro.src="https://raw.githubusercontent.com/pookiege/OCSIN/master/gyro.gif"
+      gyro.src="https://raw.githubusercontent.com/pookiege/OCSIN/master/images/gyro.gif"
       gyro.className='infoimg';
       div.appendChild(gyro);
     }
+	
+    document.body.appendChild(div);
+
     var script = document.createElement("script");
     script.setAttribute("src", "//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js");
     script.addEventListener('load', function() {
