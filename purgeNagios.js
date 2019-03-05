@@ -190,7 +190,7 @@ function purgeNagios2(SCLI,images){
         //On parcourt les SF du tableau DIP
         foundPourSF=false;
         var table = document.createElement('table');
-        table.className='tableRes';
+        table.className='tableRes2';
         var tableBody = document.createElement('tbody');
         var colonne = 0;
         var row = document.createElement('tr');
