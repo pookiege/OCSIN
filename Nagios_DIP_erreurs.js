@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Nagios : DIP / Erreurs
 // @namespace    https://prod.etat-ge.ch/ctipilotage-srv/cgi-bin/status.cgi?host=monitoring_dispo&limit=0
-// @version      1.1.14
+// @version      1.1.15
 // @description  Nagios version super allégée
 // @author       NTH
 // @require      http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js
@@ -43,8 +43,9 @@
     GM_addStyle('.tableRes { margin:10px; width : 100%}');
     GM_addStyle('.preview { float:right; height: 15px}');
     GM_addStyle('.info { font-size: 80pt;font-weight: bold; display: block; margin-left: auto; margin-right: auto ; padding: 30 0 50 50; color: #4444FF;  }');
-    GM_addStyle('.infoimg { display: block; margin-left: auto; margin-right: auto ;text-align: center ;padding: 0 0 0 0; height:500; border: 2px solid #4444FF;border-radius: 6px; }');
+    GM_addStyle('.infoimg { display: block; margin-left: auto; margin-right: auto ;text-align: center ;margin-top: 200; padding: 0 0 0 0; height:500; border: 1px solid #4444FF;border-radius: 6px; }');
     GM_addStyle('.CDS { width:50%; height:133%; position:fixed; right:0; top:0; zoom: 0.75; -moz-transform: scale(0.75); -moz-transform-origin: top right;  }');
+    GM_addStyle('.divSF {width:80%; height:100%; position:fixed; left:0; top:0} ');
     purgeNagios2(dip,images);
     })
 ();
