@@ -57,6 +57,8 @@ function purgeNagiosTous(SCLI,images){
         }
     }
     maTable.remove();
+    var div = document.createElement('div');
+    div.className='divSF';
     var foundPourSF=false;
     var foundPourServ = false;
     //On attaque l'affichage customisé
@@ -156,7 +158,7 @@ function purgeNagiosTous(SCLI,images){
         if (foundPourServ)
         {
             tableServ.appendChild(tableBodyServ);
-            document.body.appendChild(tableServ);
+            div.appendChild(tableServ);
         }
     }
     var info;
@@ -169,8 +171,16 @@ function purgeNagiosTous(SCLI,images){
         var minions = document.createElement('img');
         minions.src=images[Math.floor(Math.random()*images.length)];
         minions.className='infoimg';
-        document.body.appendChild(minions);
+        div.appendChild(minions);
     }
+    document.body.appendChild(div);
+    var CDS = document.createElement('div');
+    CDS.className='CDS';
+    var frame = document.createElement('iframe');
+    frame.src="https://prod.etat-ge.ch/ctiintraprd/mvc/CDS/Status";
+    frame.className='CDS';
+    CDS.appendChild(frame);
+    document.body.appendChild(CDS);
     var script = document.createElement("script");
     script.setAttribute("src", "//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js");
     script.addEventListener('load', function() {
