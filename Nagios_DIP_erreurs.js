@@ -36,7 +36,7 @@
                'https://raw.githubusercontent.com/pookiege/OCSIN/master/images/terry.gif',
                'https://raw.githubusercontent.com/pookiege/OCSIN/master/images/loop.gif',
                'https://raw.githubusercontent.com/pookiege/OCSIN/master/images/thumb_up.gif',
-               'https://raw.githubusercontent.com/pookiege/OCSIN/master/images/hathaway.wepb'];
+               'https://raw.githubusercontent.com/pookiege/OCSIN/master/images/hathaway.gif'];
     GM_addStyle('.statusOK       { font-size: 12pt; }');
     GM_addStyle('.statusWARNING  { font-size: 14pt; }');
     GM_addStyle('.statusCRITICAL { font-size: 40pt; background-color: #ff6666; color : #000000; font-weight: bold;}');
