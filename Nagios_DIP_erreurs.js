@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Nagios : DIP / Erreurs
 // @namespace    https://prod.etat-ge.ch/ctipilotage-srv/cgi-bin/status.cgi?host=monitoring_dispo&limit=0
-// @version      1.1.16
+// @version      1.1.17
 // @description  Nagios version super allégée
 // @author       NTH
 // @require      http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js
@@ -26,6 +26,7 @@
                ["7815 - Pédagogique","9497","9727"]
               ];
     // Pour convertir une image en base64 : https://websemantics.uk/tools/image-to-data-uri-converter/
+    // Pour convertir un webp en gif (giphy par exemple) : https://convertio.co/webp-gif/
  var images = ['https://raw.githubusercontent.com/pookiege/OCSIN/master/images/minions.gif',
                'https://raw.githubusercontent.com/pookiege/OCSIN/master/images/confettis.gif',
                'https://raw.githubusercontent.com/pookiege/OCSIN/master/images/belair.gif',
@@ -34,7 +35,8 @@
                'https://raw.githubusercontent.com/pookiege/OCSIN/master/images/boyle.gif',
                'https://raw.githubusercontent.com/pookiege/OCSIN/master/images/terry.gif',
                'https://raw.githubusercontent.com/pookiege/OCSIN/master/images/loop.gif',
-               'https://raw.githubusercontent.com/pookiege/OCSIN/master/images/thumb_up.gif'];
+               'https://raw.githubusercontent.com/pookiege/OCSIN/master/images/thumb_up.gif',
+               'https://raw.githubusercontent.com/pookiege/OCSIN/master/images/hathaway.wepb'];
     GM_addStyle('.statusOK       { font-size: 12pt; }');
     GM_addStyle('.statusWARNING  { font-size: 14pt; }');
     GM_addStyle('.statusCRITICAL { font-size: 40pt; background-color: #ff6666; color : #000000; font-weight: bold;}');
