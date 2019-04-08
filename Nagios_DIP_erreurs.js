@@ -26,7 +26,7 @@
                ["7815 - Pédagogique","9497","9727"]
               ];
     // Pour convertir une image en base64 : https://websemantics.uk/tools/image-to-data-uri-converter/
-    // Pour convertir un webp en gif (giphy par exemple) : https://convertio.co/webp-gif/
+    // Pour convertir un webp en gif (giphy par exemple) : https://www.aconvert.com/image/webp-to-gif/
  var images = ['https://raw.githubusercontent.com/pookiege/OCSIN/master/images/minions.gif',
                'https://raw.githubusercontent.com/pookiege/OCSIN/master/images/confettis.gif',
                'https://raw.githubusercontent.com/pookiege/OCSIN/master/images/belair.gif',
