@@ -25,6 +25,7 @@
                ["7790 - Prestations d’Etat-major et de moyens du DIP","5176","6062","6143","6300","6356","9009","9328","9512","9617","9763","9765","9766","9767"],
                ["7815 - Pédagogique","9497","9727"]
               ];
+
     // Pour convertir une image en base64 : https://websemantics.uk/tools/image-to-data-uri-converter/
     // Pour convertir un webp en gif (giphy par exemple) : https://www.aconvert.com/image/webp-to-gif/
  var images = ['https://raw.githubusercontent.com/pookiege/OCSIN/master/images/minions.gif',
