@@ -156,13 +156,6 @@ function purgeNagios2(SCLI,images){
     }
 
     document.body.appendChild(div);
-    var CDS = document.createElement('div');
-    CDS.className='CDS';
-    var frame = document.createElement('iframe');
-    frame.src="https://prod.etat-ge.ch/ctiintraprd/mvc/CDS/Status";
-    frame.className='CDS';
-    CDS.appendChild(frame);
-    document.body.appendChild(CDS);
 
     var script = document.createElement("script");
     script.setAttribute("src", "//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js");
