@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Nagios : DIP / Erreurs
 // @namespace    https://prod.etat-ge.ch/ctipilotage-srv/cgi-bin/status.cgi?host=monitoring_dispo&limit=0
-// @version      1.1.22
+// @version      1.1.23
 // @description  Nagios version super allégée
 // @author       NTH
 // @require      http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js
@@ -36,6 +36,7 @@
                'https://raw.githubusercontent.com/pookiege/OCSIN/master/images/boyle.gif',
                'https://raw.githubusercontent.com/pookiege/OCSIN/master/images/terry.gif',
                'https://raw.githubusercontent.com/pookiege/OCSIN/master/images/loop.gif',
+               'https://raw.githubusercontent.com/pookiege/OCSIN/master/images/cacatoes.gif',
                'https://raw.githubusercontent.com/pookiege/OCSIN/master/images/thumb_up.gif',
                'https://raw.githubusercontent.com/pookiege/OCSIN/master/images/hathaway.gif'];
     GM_addStyle('.statusOK       { font-size: 12pt; }');
