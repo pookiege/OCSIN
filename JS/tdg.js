@@ -6,8 +6,8 @@
 // @author       You
 // @match        https://www.tdg.ch/*
 // @grant        none
-// @updateURL    https://raw.githubusercontent.com/pookiege/OCSIN/JS/master/tdg.js
-// @downloadURL  https://raw.githubusercontent.com/pookiege/OCSIN/JS/master/tdg.js
+// @updateURL    https://raw.githubusercontent.com/pookiege/OCSIN/master/JS/tdg.js
+// @downloadURL  https://raw.githubusercontent.com/pookiege/OCSIN/master/JS/tdg.js
 // ==/UserScript==
 
 (function() {
