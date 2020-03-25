@@ -126,6 +126,7 @@ function purgeNagios(scli){
         document.body.appendChild(script);
     }, false);
     document.body.appendChild(script);
+    document.getElementsByTagName('br')[0].remove();
 }
 
 function purgeNagios2(SCLI,images){
