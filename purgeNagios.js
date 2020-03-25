@@ -6,6 +6,7 @@ function purgeNagios(scli){
     document.getElementsByClassName('pageTitle')[0].remove();
     document.getElementById('pagelimit').remove();
     document.getElementsByClassName('itemTotalsTitle')[0].remove();
+    document.getElementsByTagName('br').remove();
     var compteur=0;
     var maTable = document.getElementsByTagName('table')[0];
     for (compteur=0;compteur<maTable.rows.length;compteur++) {
