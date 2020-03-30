@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         TDG
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  Au revoir Abo+
 // @author       You
 // @match        https://www.tdg.ch/*
@@ -12,19 +12,17 @@
 
 (function() {
     'use strict';
-    document.getElementById("overlay_wrap").remove();
     clearList(document.getElementsByClassName("pub_300x250"));
     clearList(document.getElementsByClassName("ad-content-ad"));
     clearList(document.getElementsByClassName("ad-outside-right"));
-//    clearList(document.getElementsByClassName("pub_300x250 pub_300x250m pub_728x90 text-ad textAd text_ad text_ads text-ads text-ad-links banner banner-top"));
+    clearList(document.getElementsByClassName("o-tamedia-wrapper"));
     clearList(document.getElementsByTagName("iframe"));
     clearList(document.getElementsByTagName("style"));
+    clearList(document.getElementsByClassName("publireportage"));
+    document.getElementById("overlay_wrap").remove();
     document.getElementById("mainColRightPublireportage").remove();
     document.getElementById("rufous-sandbox").remove();
     document.getElementById("overlay_wrap").remove();
-    clearList(document.getElementsByClassName("publireportage"));
-
-    // Your code here...
 })();
 
 function clearList(liste)
