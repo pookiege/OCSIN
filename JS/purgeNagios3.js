@@ -143,9 +143,9 @@ function purgeNagios3(SCLI,images){
       GM_addStyle('.w3-animate-opacity {}');
       GM_addStyle('.w3-text-white {color:#fff!important; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;}');
       GM_addStyle('.w3-display-middle {position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%)}');
-      GM_addStyle('.w3-jumbo {font-size:64px!important}');
+      GM_addStyle('.w3-jumbo {font-size:64px!important; display:inline; }');
       GM_addStyle('.w3-animate-top {position:relative;animation:animatetop 0.8s}@keyframes animatetop{from{top:-300px;opacity:0} to{top:0;opacity:1}}');
-
+      GM_addStyle('.w3-animate-right{position:relative;animation:animateright 0.8s}@keyframes animateright{from{right:-300px;opacity:0} to{right:0;opacity:1}}');
         var meta = document.createElement('meta');
         meta.setAttribute('name', 'viewport');
         meta.content = 'width=device-width, initial-scale=1';
@@ -160,8 +160,13 @@ function purgeNagios3(SCLI,images){
         info2.className='w3-display-middle';
         var h1 = document.createElement('h1');
         h1.className='w3-jumbo w3-animate-top';
-        h1.innerHTML='Tout est OK pour le DIP';
+        h1.innerHTML='Tout est OK pour le ';
         info2.appendChild(h1);
+	var h2 = document.createElement('h1');
+        h2.className='w3-jumbo w3-animate-right';
+        h2.innerHTML='DIP';
+        info2.appendChild(h2);
+	
         info.appendChild(info2);
         document.body.appendChild(info);
     }
