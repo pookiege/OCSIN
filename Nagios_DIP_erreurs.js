@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name         Nagios : DIP / Erreurs
 // @namespace    https://prod.etat-ge.ch/ctipilotage-srv/cgi-bin/status.cgi?host=monitoring_dispo&limit=0
-// @version      1.1.27
+// @version      1.1.28
 // @description  Nagios version super allégée
 // @author       NTH
 // @require      http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js
-// @require      https://raw.githubusercontent.com/pookiege/OCSIN/master/JS/purgeNagios3.js
+// @require      https://raw.githubusercontent.com/pookiege/OCSIN/master/tampermonkey/purgeNagios.js
 // @match        https://*.etat-ge.ch/ctipilotage-srv/cgi-bin/status.cgi?host=monitoring_dispo&limit=0
 // @grant        GM_addStyle
 // @updateURL    https://raw.githubusercontent.com/pookiege/OCSIN/master/Nagios_DIP_erreurs.js
@@ -41,7 +41,7 @@
                'https://raw.githubusercontent.com/pookiege/OCSIN/master/images/hathaway.gif'];
 
     $(document).ready(function(){
-purgeNagios3(dip,images);
+purgeNagios(dip,images);
 });
     })
 ();
