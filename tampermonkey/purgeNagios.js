@@ -141,7 +141,7 @@ function purgeNagios(SCLI,images){
 
     if (toutBaigne)
     {
-      GM_addStyle('body,html {height: 98%}');
+      GM_addStyle('body,html {height: 100%}');
       GM_addStyle('.w3-display-container {position:relative; }');
       GM_addStyle('.w3-animate-opacity {}');
       GM_addStyle('.w3-text-white {color:#fff!important; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;}');
