@@ -6,7 +6,7 @@ function purgeNagios(scli){
     if(document.getElementsByClassName('pageTitle') != null)   document.getElementsByClassName('pageTitle')[0].remove();
     if(document.getElementById('pagelimit') != null) document.getElementById('pagelimit').remove();
     if(document.getElementsByClassName('itemTotalsTitle') != null) document.getElementsByClassName('itemTotalsTitle')[0].remove();
-    if (document.getElementsByTagName('br') != null) document.getElementsByTagName('br').remove();
+    //if (document.getElementsByTagName('br') != null) document.getElementsByTagName('br').remove();
     var compteur=0;
     var maTable = document.getElementsByTagName('table')[0];
     for (compteur=0;compteur<maTable.rows.length;compteur++) {
