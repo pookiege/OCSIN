@@ -2,10 +2,10 @@ function purgeNagios(scli){
     var resultat =[];
     var nbColonnes = 6;
     //on vire le haut, superflu
-    document.getElementsByClassName('headertable')[0].remove();
-    document.getElementsByClassName('pageTitle')[0].remove();
-    document.getElementById('pagelimit').remove();
-    document.getElementsByClassName('itemTotalsTitle')[0].remove();
+    if(document.getElementsByClassName('headertable') != null) document.getElementsByClassName('headertable')[0].remove();
+    if(document.getElementsByClassName('pageTitle') != null)   document.getElementsByClassName('pageTitle')[0].remove();
+    if(document.getElementById('pagelimit') != null) document.getElementById('pagelimit').remove();
+    if(document.getElementsByClassName('itemTotalsTitle') != null) document.getElementsByClassName('itemTotalsTitle')[0].remove();
     if (document.getElementsByTagName('br') != null) document.getElementsByTagName('br').remove();
     var compteur=0;
     var maTable = document.getElementsByTagName('table')[0];
