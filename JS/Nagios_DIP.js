@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name         Nagios : que le DIP
 // @namespace    https://prod.etat-ge.ch/ctipilotage-srv/cgi-bin/status.cgi?host=monitoring_dispo&limit=0
-// @version      1.16
+// @version      1.17
 // @description  Nagios version allégée
 // @author       NTH
 // @require      http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js
-// @require      https://raw.githubusercontent.com/pookiege/OCSIN/master/purgeNagios.js
+// @require      https://raw.githubusercontent.com/pookiege/OCSIN/master/JS/purgeNagios.js
 // @require      https://raw.githubusercontent.com/pookiege/OCSIN/master/JS/dip.js
 // @match        https://*.etat-ge.ch/ctipilotage-srv/cgi-bin/status.cgi?host=monitoring_dispo&limit=0
 // @grant        GM_addStyle
