@@ -3,17 +3,25 @@ function purgeNagios(scli){
     var nbColonnes = 6;
     //on vire le haut, superflu
     if(document.getElementsByClassName('headertable') != null) document.getElementsByClassName('headertable')[0].remove();
-    if(document.getElementsByClassName('pageTitle') != null)   document.getElementsByClassName('pageTitle')[0].remove();
+    if(document.getElementsByClassName('serviceTotals') != null) {
+        while (document.getElementsByClassName('serviceTotals').length>0){
+        document.getElementsByClassName('serviceTotals')[0].remove();}}
+    if(document.getElementsByClassName('pageTitle') != null) document.getElementsByClassName('pageTitle')[0].remove();
+    //if(document.getElementsByClassName('statusTitle') != null) document.getElementsByClassName('statusTitle').remove();
+
     if(document.getElementById('pagelimit') != null) document.getElementById('pagelimit').remove();
+    if(document.getElementById('result_limit') != null) document.getElementById('result_limit').remove();
     if(document.getElementsByClassName('itemTotalsTitle') != null) document.getElementsByClassName('itemTotalsTitle')[0].remove();
     //if (document.getElementsByTagName('br') != null) document.getElementsByTagName('br').remove();
     var compteur=0;
-    var maTable = document.getElementsByTagName('table')[0];
-    for (compteur=0;compteur<maTable.rows.length;compteur++) {
+    var maTable = document.querySelectorAll("table.status")[0];
+//alert("taille de matable: "+maTable.rows.length);
+    for (compteur=1;compteur<maTable.rows.length;compteur++) {
         //on parcourt les lignes du tableau
         //pour chaque ligne il y a plusieurs cellules
-
-        if (maTable.rows[compteur].cells[1].getElementsByTagName('tr').length >0)
+        //alert("maTable.rows["+compteur+"].cells = "+maTable.rows[compteur].cells.length);
+        //alert(maTable.rows[compteur].cells[1]);
+        if (maTable.rows[compteur].cells != null && maTable.rows[compteur].cells.length>0 && maTable.rows[compteur].cells[1] != null && maTable.rows[compteur].cells[1].getElementsByTagName('tr').length >0)
         {
             //on est bien sur le nom
             var libelle = maTable.rows[compteur].cells[1].getElementsByTagName('a')[0].innerHTML;
@@ -263,7 +271,7 @@ function purgeNagios2(SCLI,images){
             div.appendChild(table);
         }
     }
-    
+
     if (toutBaigne)
     {
         var info = document.createElement('DIV');
@@ -285,7 +293,7 @@ function purgeNagios2(SCLI,images){
       gyro.className='infoimg';
       div.appendChild(gyro);
     }
-	
+
     document.body.appendChild(div);
 
     var script = document.createElement("script");
